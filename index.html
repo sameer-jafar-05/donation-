@@ -1,700 +1,310 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hope for Tomorrow - Sponsor an Orphan Child in India</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #2d3748;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header & Navigation */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #4a5568;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .donate-btn {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .donate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8rem 0 4rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: #f7fafc;
-            padding: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: #718096;
-            font-weight: 500;
-        }
-
-        /* Mission Section */
-        .mission {
-            padding: 6rem 0;
-            background: white;
-        }
-
-        .mission-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .mission-text h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .mission-text p {
-            font-size: 1.1rem;
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .mission-image {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mission-image::before {
-            content: '👶🏽';
-            font-size: 8rem;
-            opacity: 0.8;
-        }
-
-        /* How it Works */
-        .how-it-works {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 6rem 0;
-            color: white;
-        }
-
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .step {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        /* Impact Stories */
-        .impact {
-            padding: 6rem 0;
-            background: #f7fafc;
-        }
-
-        .impact h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .story-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .story-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .story-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .story-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .story-age {
-            color: #718096;
-            margin-bottom: 1rem;
-        }
-
-        .story-text {
-            color: #4a5568;
-            line-height: 1.7;
-        }
-
-        /* Donation Section */
-        .donation {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 6rem 0;
-            color: white;
-            text-align: center;
-        }
-
-        .donation h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .donation p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        .donation-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .donation-option {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .donation-option:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        .donation-option.selected {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .donation-amount {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .donation-desc {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .custom-amount {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 1rem;
-            color: white;
-            font-size: 1.1rem;
-            width: 100%;
-            max-width: 300px;
-            margin: 1rem auto;
-            text-align: center;
-        }
-
-        .custom-amount::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            padding: 3rem 0 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #e2e8f0;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #a0aec0;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .footer-section a:hover {
-            color: #667eea;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #4a5568;
-            padding-top: 1rem;
-            color: #a0aec0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mission-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero {
-                padding: 6rem 0 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal h3 {
-            color: #2d3748;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .modal p {
-            color: #4a5568;
-            margin-bottom: 2rem;
-        }
-
-        .close-modal {
-            background: #e2e8f0;
-            color: #2d3748;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .close-modal:hover {
-            background: #cbd5e0;
-        }
-    </style>
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HopeNest — Sponsor an Orphan</title>
+  <meta name="description" content="HopeNest — a nonprofit initiative to sponsor orphan children in India. Donate, volunteer, and join our mission." />
+  <!--
+    Single-file website (index.html) ready for GitHub Pages.Quick deployment steps (GitHub Pages):
+  1. Create a new repository on GitHub named `your-org-website` (or any name).
+  2. In the repo, click Add file → Upload files, and upload this index.html.
+  3. Commit. Then go to Settings → Pages and set the source to the main branch / root.
+  4. Your site will be live at https://<your-username>.github.io/<repo-name>/ within minutes.
+
+IMPORTANT: This file contains placeholders for payment links (PAYMENT_LINK). Replace those with a real donation URL
+from your chosen payment provider (PayPal, Razorpay, Stripe Checkout URL, or a verified donation landing page).
+
+Replace the `ORG_EMAIL` and `ORG_WHATSAPP` placeholders in the contact section with your real contact details.
+
+-->
+
+  <style>
+    /* ==========================
+       HopeNest - Single file CSS
+       Modern, aesthetic and accessible
+       ========================== */
+
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#9aa7b2;
+      --accent:#6ee7b7; /* soft mint */
+      --accent-2:#60a5fa; /* sky */
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      --maxw:1100px;
+      --ff-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#071027 0%, var(--bg) 60%);
+      color:#e6eef3;
+      font-family:var(--ff-sans);
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px 18px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .wrap{width:100%;max-width:var(--maxw);} 
+
+    /* Top navigation */
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .logo svg{width:32px;height:32px}
+    .brand h1{font-size:18px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:14px;align-items:center}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:inherit;text-decoration:none;font-weight:600;font-size:14px}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#032;box-shadow:0 8px 30px rgba(96,165,250,0.12)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:stretch;margin-bottom:34px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .hero-left h2{font-size:28px;margin:0 0 10px}
+    .kicker{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--accent);margin-bottom:12px}
+    .lead{color:var(--muted);margin-bottom:18px}
+    .stat-grid{display:flex;gap:10px}
+    .stat{flex:1;background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;text-align:center}
+    .stat h3{margin:0;font-size:20px}
+    .stat p{margin:4px 0 0;color:var(--muted);font-size:12px}
+
+    /* Right column - donate card */
+    .donate-card{display:flex;flex-direction:column;gap:14px;align-items:stretch}
+    .amounts{display:flex;gap:10px;flex-wrap:wrap}
+    .amount{flex:1;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);text-align:center;cursor:pointer;border:2px solid transparent}
+    .amount.selected{border-color:rgba(110,231,183,0.16);box-shadow:inset 0 -10px 20px rgba(96,165,250,0.03)}
+    input[type="number"].custom-amt{appearance:none;padding:12px;border-radius:10px;background:transparent;border:1px dashed rgba(255,255,255,0.04);width:100%;color:inherit}
+    .donate-actions{display:flex;gap:10px}
+
+    /* impact tiles */
+    .impact{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .tile{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));text-align:center}
+    .tile h4{margin:6px 0}
+    .tile p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Programs and gallery */
+    .section{margin:28px 0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+    /* footer */
+    footer{display:flex;justify-content:space-between;align-items:center;padding:18px;border-radius:12px;background:rgba(255,255,255,0.02);margin-top:20px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* responsiveness */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr}
+      .impact{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      body{padding:16px}
+      .impact{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start;gap:14px}
+      nav{width:100%;justify-content:space-between}
+    }
+
+    /* small interactions */
+    .pulse{animation:pulse 3s infinite}
+    @keyframes pulse{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* accessible focus */
+    .btn:focus, .amount:focus{outline:3px solid rgba(96,165,250,0.12);outline-offset:3px}
+
+  </style></head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Hope for Tomorrow</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#mission">Our Mission</a></li>
-                <li><a href="#impact">Impact Stories</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#donation" class="donate-btn">Donate Now</a>
-        </nav>
-    </header>
+  <div class="wrap"><header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true">
+      <!-- simple speech + leaf icon -->
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13c0-3.866 3.134-7 7-7 1.657 0 3.176.512 4.429 1.382" stroke="#032" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 14c0 3.866-3.134 7-7 7-1.657 0-3.176-.512-4.429-1.382" stroke="#032" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div>
+      <h1>HopeNest</h1>
+      <p>Giving every child a chance — India</p>
+    </div>
+  </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content animate-fadeInUp">
-                <h1>Give Hope. Change Lives. Transform Futures.</h1>
-                <p>Join us in providing love, care, and opportunities to orphan children across India. Your sponsorship can transform a child's life forever.</p>
-                <div class="hero-buttons">
-                    <a href="#donation" class="btn-primary">Sponsor a Child</a>
-                    <a href="#mission" class="btn-secondary">Learn More</a>
-                </div>
-            </div>
+  <nav>
+    <a class="btn" href="#programs">Programs</a>
+    <a class="btn" href="#impact">Impact</a>
+    <a class="btn" href="#contact">Contact</a>
+    <a class="btn primary" href="#donate" id="jumpDonate">Donate</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="card hero-left" aria-labelledby="hero-title">
+      <span class="kicker">Nonprofit • Registered</span>
+      <h2 id="hero-title">Sponsor a child's education & well-being</h2>
+      <p class="lead">HopeNest connects kind donors with orphan children across India. Sponsorship covers education, food, healthcare and counselling — for a brighter and stable future.</p>
+
+      <div class="stat-grid" role="list">
+        <div class="stat" role="listitem"><h3>320+</h3><p>Children currently sponsored</p></div>
+        <div class="stat" role="listitem"><h3>45</h3><p>Communities reached</p></div>
+        <div class="stat" role="listitem"><h3>98%</h3><p>School attendance rate</p></div>
+      </div>
+
+      <div class="section" id="programs">
+        <h3 style="margin:12px 0">Our programs</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h4>Education Sponsorship</h4>
+            <p class="small">School fees, uniforms, books and tuition support for steady learning.</p>
+          </div>
+          <div class="card">
+            <h4>Health & Nutrition</h4>
+            <p class="small">Regular health checkups, vaccinations and nutritious meals.</p>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid fade-in">
-                <div class="stat-item">
-                    <div class="stat-number">2,847</div>
-                    <div class="stat-label">Children Sponsored</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">156</div>
-                    <div class="stat-label">Partner Orphanages</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">States Covered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">₹45L</div>
-                    <div class="stat-label">Funds Raised</div>
-                </div>
-            </div>
+      <div class="section" id="impact">
+        <h3 style="margin:12px 0">What your donation does</h3>
+        <div class="impact">
+          <div class="tile"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20" stroke="#6ee7b7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h20" stroke="#60a5fa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>₹3,000 /yr</h4><p>Books & uniform</p></div>
+          <div class="tile"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c4 0 8 3 8 8s-4 8-8 8-8-3-8-8 4-8 8-8z" stroke="#6ee7b7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>₹12,000 /yr</h4><p>Education & tuition</p></div>
+          <div class="tile"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16" stroke="#60a5fa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>One-time</h4><p>Support events & emergencies</p></div>
         </div>
-    </section>
+      </div>
 
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-        <div class="container">
-            <div class="mission-content fade-in">
-                <div class="mission-text">
-                    <h2>Our Mission</h2>
-                    <p>We believe every child deserves love, education, and the opportunity to dream big. Our mission is to bridge the gap between compassionate donors and orphan children across India, ensuring that no child is left behind.</p>
-                    <p>Through direct sponsorship programs, we provide comprehensive support including education, healthcare, nutrition, and emotional care. We work closely with verified orphanages and care centers to ensure transparency and maximum impact.</p>
-                    <p>Our goal is not just to meet immediate needs, but to empower these children with the tools and opportunities they need to build bright, independent futures.</p>
-                </div>
-                <div class="mission-image">
-                </div>
-            </div>
+    </div>
+
+    <aside class="donate-card card" id="donate">
+      <div>
+        <h3 style="margin:0 0 6px">Make a Donation</h3>
+        <p class="small">Secure & transparent — choose an amount and click Donate. We provide monthly impact reports to sponsors.</p>
+      </div>
+
+      <div>
+        <div class="amounts" role="list">
+          <button class="amount" data-amt="3000">₹3,000</button>
+          <button class="amount" data-amt="12000">₹12,000</button>
+          <button class="amount" data-amt="25000">₹25,000</button>
         </div>
-    </section>
+        <div style="margin-top:10px">
+          <label for="customAmt" class="small">Custom amount (₹)</label>
+          <input id="customAmt" class="custom-amt" type="number" inputmode="numeric" min="100" placeholder="Enter amount, e.g. 5000" aria-label="Custom donation amount">
+        </div>
+      </div>
 
-    <!-- How it Works -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="fade-in">How Your Sponsorship Works</h2>
-            <div class="steps fade-in">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Choose Your Impact</h3>
-                    <p>Select a sponsorship amount that fits your budget. Every contribution, no matter the size, makes a meaningful difference in a child's life.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Direct Support</h3>
-                    <p>Your funds go directly to verified orphanages and care centers across India, ensuring transparency and maximum impact for the children.</p>
-                </div>
-                <div class="step">
-                    <div class="step-numbe
+      <div class="donate-actions">
+        <button class="btn primary" id="donateBtn">Donate securely</button>
+        <a class="btn" id="sponsorChild" href="#contact">Sponsor a Child</a>
+      </div>
+
+      <div style="margin-top:8px;font-size:13px;color:var(--muted)">Tip: For monthly support, set up an auto-recurring donation on your payment platform.</div>
+
+      <div style="margin-top:14px">
+        <h4 style="margin:6px 0">Our assurance</h4>
+        <p class="small">We follow strict fund allocation & reporting. Audited annually. Funds reach children through partner shelters and local teams.</p>
+      </div>
+
+    </aside>
+  </section>
+
+  <section class="section card">
+    <h3>Gallery & Stories</h3>
+    <p class="small">(Add real photos — when adding images to this single file, host them in the repo `assets/` folder and replace the <code>src</code> attributes.)</p>
+    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:180px;height:110px;border-radius:12px;background:linear-gradient(180deg, rgba(96,165,250,0.06), rgba(110,231,183,0.03));display:grid;place-items:center">Photo A</div>
+      <div style="flex:1;min-width:180px;height:110px;border-radius:12px;background:linear-gradient(180deg, rgba(96,165,250,0.04), rgba(110,231,183,0.02));display:grid;place-items:center">Photo B</div>
+      <div style="flex:1;min-width:180px;height:110px;border-radius:12px;background:linear-gradient(180deg, rgba(96,165,250,0.03), rgba(110,231,183,0.015));display:grid;place-items:center">Photo C</div>
+    </div>
+  </section>
+
+  <section id="contact" class="section card">
+    <h3>Contact & Transparency</h3>
+    <p class="small">Registered address, stakeholders and annual reports should be linked here. Replace placeholders below.</p>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+      <div style="flex:1;min-width:240px">
+        <p style="margin:6px 0"><strong>Email</strong><br><a href="mailto:ORG_EMAIL" style="color:var(--accent)">ORG_EMAIL</a></p>
+        <p style="margin:6px 0"><strong>Phone / WhatsApp</strong><br><a href="tel:ORG_WHATSAPP" style="color:var(--accent)">ORG_WHATSAPP</a></p>
+        <p style="margin:6px 0"><strong>Registration</strong><br><span class="small">(Add your registration / 12A / 80G details here)</span></p>
+      </div>
+
+      <div style="flex:1;min-width:240px">
+        <h4 style="margin:6px 0">Transparency</h4>
+        <p class="small">Upload your annual report and link the PDF here in your repo, then update the link below.</p>
+        <a class="btn" href="#" id="annualReport">View latest report</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="small">© <span id="year"></span> HopeNest — All rights reserved</div>
+  <div>
+    <a class="btn" href="#" style="margin-right:8px">Privacy</a>
+    <a class="btn" href="#" style="opacity:0.9">Terms</a>
+  </div>
+</footer>
+
+  </div>  <script>
+    // Small JS to make donation UI work and show placeholders for payment integration
+    (function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const amounts = Array.from(document.querySelectorAll('.amount'));
+      const custom = document.getElementById('customAmt');
+      let selectedAmt = null;
+
+      function clearSelected(){amounts.forEach(a=>a.classList.remove('selected'))}
+
+      amounts.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          clearSelected();
+          btn.classList.add('selected');
+          selectedAmt = Number(btn.dataset.amt);
+          custom.value = '';
+        });
+      });
+
+      custom.addEventListener('input', ()=>{
+        clearSelected();
+        selectedAmt = custom.value ? Number(custom.value) : null;
+      });
+
+      document.getElementById('donateBtn').addEventListener('click', ()=>{
+        const amount = selectedAmt || null;
+        if(!amount || isNaN(amount) || amount < 100){
+          alert('Please enter a valid donation amount of at least ₹100');
+          return;
+        }
+
+        // Replace PAYMENT_LINK below with your payment provider's URL or prefilled checkout link.
+        const PAYMENT_LINK = 'PAYMENT_LINK';
+
+        if(PAYMENT_LINK === 'PAYMENT_LINK'){
+          // No payment integration provided: show a modal-style confirmation and provide next steps
+          const confirmMsg = `You are donating ₹${amount}.\n\nPlease replace the placeholder PAYMENT_LINK in the index.html with a real payment URL (e.g., Razorpay Checkout link, PayPal Checkout, or Stripe Checkout) to complete transactions.\n\nWould you like to receive an email with sponsorship steps?`;
+          if(confirm(confirmMsg)){
+            window.location.href = 'mailto:ORG_EMAIL?subject=Sponsor%20request&body=' + encodeURIComponent('I would like to sponsor a child with INR ' + amount + '. Please send me the next steps.');
+          }
+        } else {
+          // If you have a real payment url, we redirect to it with amount param if supported
+          const target = PAYMENT_LINK.replace('{amount}', amount);
+          window.open(target, '_blank');
+        }
+      });
+
+      // quick jump to donate section
+      document.getElementById('jumpDonate').addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.getElementById('donate').scrollIntoView({behavior:'smooth',block:'center'});
+      });
+
+    })();
+  </script></body>
+</html>
